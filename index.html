@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Bucles</title>
+</head>
+
+<body>
+    <style>
+
+    </style>
+
+    <script>
+        // genero los meses del año
+        const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+        // creo el container y lo transformo en grid
+        document.body.innerHTML = `<div class="container" style="display:grid; grid-template-columns:repeat(4,1fr); min-height:400px"></div>`;
+
+        // capturo el container
+        const container = document.querySelector('.container');
+
+        // recorro los meses
+        meses.forEach(mes => {
+            container.innerHTML += `<div class="${mes}"><p>${mes}</p></div>` // genero el stringTemplate
+
+            // capturo el mes actual 
+            const mesActual = document.querySelector('.' + mes);
+            mesActual.style.display = 'grid';
+            //genero una cuadricula para los dias de la semana
+            mesActual.style.gridTemplateColumns = 'repeat(7,1fr)';
+            const tituloMes = document.querySelector('.' + mes + ' p');
+
+            //estilo cada mes
+            tituloMes.style.gridColumn = 'span 7';
+            mesActual.style.padding = '1rem';
+            tituloMes.style.textAlign = 'center';
+            tituloMes.style.paddingBottom = '.5rem';
+
+            // pinto 31 dias en todos los meses
+            //mesActual.innerHTML
+            let dias = 31
+            for (let i = 1; i <= dias; i++) {
+                //modifico para que los meses tengan 31 o 30 dias y febrero 29
+                if (mes == 'febrero') dias = 28;
+                else if (mes == 'abril' || mes == 'junio' || mes == 'septiembre' || mes == 'noviembre') dias = 30;
+
+                // decoro los dias
+                mesActual.innerHTML += `<span style="padding:0.2rem">${i}</span>`;
+            }
+
+
+
+
+        })
+
+    </script>
+</body>
+
+</html>
